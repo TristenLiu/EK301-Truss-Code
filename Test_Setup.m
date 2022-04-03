@@ -33,7 +33,7 @@ Sx(1,1) = 1; Sy(1,2) = 1; Sy(8,3) = 1;
 %The next j columns represent the Vertial Load force at the j'th pin
 L = zeros(2*joints, 1);
 
-L(1,4) = 25;         %There is a 25N load at pin 4 in the practice problem
+L(12,1) = 25;         %There is a 25N vertical load at pin 4 in the practice problem
 
 
 
