@@ -56,7 +56,7 @@ end
 
 %A * T = L -> T = A^-1 * L
 %A is the compound matrix of MemberCoeff and Sfull
-%T is a vector that contians all of the unknown forces
+%T is a vector that contains all of the unknown forces
 %L is the Load vector that is loaded in the setup file
 
 A = [MemberCoeff Sfull];
