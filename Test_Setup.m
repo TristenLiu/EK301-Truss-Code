@@ -4,11 +4,11 @@
 %otherwise.
 C = [ [1 1 0 0 0 0 0 0 0 0 0 0 0];
       [1 0 1 1 0 0 0 0 0 0 0 0 0];
-      [0 0 0 1 1 0 0 1 0 0 0 0 0];
-      [0 1 1 0 1 1 1 0 0 0 0 0 0];
-      [0 0 0 0 0 1 1 1 1 1 0 0 0];
-      [0 0 0 0 0 0 1 0 0 1 1 1 0];
-      [0 0 0 0 0 0 0 0 1 0 1 0 1];
+      [0 0 1 0 1 1 0 0 0 0 0 0 0];
+      [0 1 0 1 1 0 1 1 0 0 0 0 0];
+      [0 0 0 0 0 1 1 0 1 1 0 0 0];
+      [0 0 0 0 0 0 0 1 1 0 1 1 0];
+      [0 0 0 0 0 0 0 0 0 1 1 0 1];
       [0 0 0 0 0 0 0 0 0 0 0 1 1] ];
 
 [joints, members] = size(C);
@@ -30,10 +30,10 @@ Sx(1,1) = 1; Sy(1,2) = 1; Sy(8,3) = 1;
 
 %Defining the Load vector L
 %The first j columns represent the Horizontal Load force at the j'th pin
-%The next j columns represent the Vertial Load force at the j'th pin
+%The last j columns represent the Vertial Load force at the j'th pin
 L = zeros(2*joints, 1);
 
-L(12,1) = 25;         %There is a 25N vertical load at pin 4 in the practice problem
+L(joints+4,1) = 25;         %There is a 25N vertical load at pin 4 in the practice problem
 
 
 
