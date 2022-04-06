@@ -35,7 +35,7 @@ L = zeros(2*joints, 1);
 
 L(joints+4,1) = 25;         %There is a 25N vertical load at pin 4 in the practice problem
 
-
+save('TrussPractice.mat','C','Sx','Sy','X','Y','L');
 
 
 
