@@ -64,14 +64,10 @@ Tm = T(1:members);
 Rm = Tm/sum(L);
 
 for M = 1:members
-    if (Rm(M)~=0)
-        Wfail(M) = Pcrit(M) / Rm(M);
-    else
-        Wfail(M) = 0;
-    end
+    Wfail(M) = Pcrit(M) / Rm(M);
 end
 
-printTruss(T,L,joints,members,totalLen);
+printTruss(T,L,joints,members,totalLen,Wfail);
 
 
 
