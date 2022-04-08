@@ -2,7 +2,8 @@
 % Group members: Samuel Haley, Hector Castro
 
 %Import setup file
-filename = "TrussPractice.mat";              %Replace with file name
+Test_Setup;                            %Run Setup script to generate .mat file
+filename = "TrussPractice.mat";        %Replace with file name
 load(filename);
 
 %Setup
@@ -10,8 +11,8 @@ load(filename);
 Sfull = [Sx; Sy];
    
 MemberCoeff = zeros(2*joints, members); 
-Pcrit = zeros(members); %The critical buckling force of each member
-Wfail = zeros(members); %The maximum load given Pcrit of each member
+Pcrit = zeros(members,1); %The critical buckling force of each member
+Wfail = zeros(members,1); %The maximum load given Pcrit of each member
 
 totalLen = 0; %sum of all the lengths for use in total cost calculation
 
@@ -29,7 +30,6 @@ for M = 1:members
            break;
        end
    end
-   fprintf('%d\t%d\n',index(1),index(2));
    
    %Calculating distance between two joints
    Xdif = X(index(2)) - X(index(1));
@@ -40,9 +40,6 @@ for M = 1:members
    
    %Calculating Pcrit for each member, using Power fit from lab data
    Pcrit(M) = 3908.184 * dist^(-2.211);
-   
-   %Calculating Wfail using Pcrit
-   Wfail(M) = -Pcrit(M) / dist;
    
    %Filling out the coefficient matrix
    %x-component coefficients
@@ -60,7 +57,19 @@ end
 %L is the Load vector that is loaded in the setup file
 
 A = [MemberCoeff Sfull];
-T = A \ L;
+T = inv(A) * L;
+
+%Finding max load using equations 7 and 10
+Tm = T(1:members);
+Rm = Tm/sum(L);
+
+for M = 1:members
+    if (Rm(M)~=0)
+        Wfail(M) = Pcrit(M) / Rm(M);
+    else
+        Wfail(M) = 0;
+    end
+end
 
 printTruss(T,L,joints,members,totalLen);
 
