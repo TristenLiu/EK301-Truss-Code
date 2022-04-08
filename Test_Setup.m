@@ -35,7 +35,12 @@ L = zeros(2*joints, 1);
 
 L(joints+4,1) = 25;         %There is a 25N vertical load at pin 4 in the practice problem
 
-save('TrussPractice.mat','C','Sx','Sy','X','Y','L');
+%Testing validity of truss
+if (members ~= 2*joints-3)
+    fprintf('Error! Please check your contruction matrix for mistakes\n');
+else
+    save('TrussPractice.mat','C','Sx','Sy','X','Y','L');
+end
 
 
 
