@@ -20,4 +20,4 @@ To test your own matrix, you can modify the code in Test_Setup.m
 
 - The TrussAnalyzer code will calculate the tension/compression forces in each member, the failure load of each member if the member is in compression as well as the range of possible failures. 
 - It will then call the print function to print the load, forces in each member, reaction forces at the supports, the cost of the truss, the max theoretical load & its range, and the max load/cost ratio. 
-- Note that the print function is designed to work for only 3 reaction forces
+- Note that the print function is designed to work for only 3 reaction forces: One horizontal, Two vertical
