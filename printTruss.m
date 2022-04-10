@@ -1,6 +1,6 @@
 %Printing the details of the Truss
 
-function printTruss(T,L,joints,members,totalLen,Wfail)
+function printTruss(T,L,joints,members,totalLen,maxLoadAll)
     disp('\% EK301, Section A2: Tristen L., Samuel H., Hector C., 4/8/2022.');
     fprintf('Load: %.2foz \n', sum(L));
     
@@ -30,9 +30,9 @@ function printTruss(T,L,joints,members,totalLen,Wfail)
     cost = 10*joints + 1*totalLen;
     fprintf('Cost of truss: $%.2f\n\n',cost);
     
-    [maxLoad, indx] = min(abs(Wfail));  %The truss will fail first at the lowest Wfail value
-    fprintf('The Truss fails at member %d with a max load of %.2foz\n', indx, maxLoad);
-    fprintf('Theoretical max load/cost ratio in oz/$: %.4f\n',maxLoad/cost);
+    fprintf('The Truss fails at member %d with a max load of %.2foz\n', maxLoadAll(4), maxLoadAll(1));
+    fprintf('The uncertainty in the max load is +/-%.2foz\n',maxLoadAll(1)-maxLoadAll(2));
+    fprintf('Theoretical max load/cost ratio in oz/$: %.4f\n',maxLoadAll(1)/cost);
 end
 
 

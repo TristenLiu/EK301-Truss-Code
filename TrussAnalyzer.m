@@ -11,8 +11,10 @@ load(filename);
 Sfull = [Sx; Sy];
    
 MemberCoeff = zeros(2*joints, members); 
-Pcrit = zeros(members,1); %The critical buckling force of each member
-Wfail = zeros(members,1); %The maximum load given Pcrit of each member
+Pcrit = zeros(members,1);       %The critical buckling force of each member
+Wfail = zeros(members,1);       %The maximum load given Pcrit of each member
+WfailLow = zeros(members,1);    %The range of failure given Pcrit range
+WfailHigh = zeros(members,1);
 
 totalLen = 0; %sum of all the lengths for use in total cost calculation
 
@@ -64,10 +66,30 @@ Tm = T(1:members);
 Rm = Tm/sum(L);
 
 for M = 1:members
-    Wfail(M) = Pcrit(M) / Rm(M);
+    if (Tm(M) > 0)
+        %Given the strength of members in tension is Inf.
+        Wfail(M) = Inf;   
+        WfailLow(M) = Inf;   
+        WfailHigh(M) = Inf; 
+    else
+        %Error range 4.116 given in Buckling Fit Plot
+        Wfail(M) = -Pcrit(M) / Rm(M);
+        WfailLow(M) = -(Pcrit(M) - 4.116) / Rm(M);
+        WfailHigh(M) = -(Pcrit(M) + 4.116) / Rm(M);
+    end
 end
 
-printTruss(T,L,joints,members,totalLen,Wfail);
+%Finding Max Theoretical Loads
+%The lowest value in Wfail is the maximum load the truss can withstand
+%The indexes of the max load should be the same
+[maxLoad, indx] = min(abs(Wfail));
+maxLoadL = min(abs(WfailLow));
+maxLoadH = min(abs(WfailHigh));
+
+maxLoadAll = [maxLoad, maxLoadL, maxLoadH, indx];
+
+%Call printing function
+printTruss(T,L,joints,members,totalLen,maxLoadAll);
 
 
 
