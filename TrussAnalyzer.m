@@ -1,9 +1,9 @@
 % Coding Lead: Tristen Liu
 % Group members: Samuel Haley, Hector Castro
 
-%Import setup file
-Test_Setup;                            %Run Setup script to generate .mat file
-filename = "TrussPractice.mat";        %Replace with file name
+%Import data file
+%filename = "TrussPractice.mat";        %Replace with file name
+filename = "TrussDesign4_Hector_Sam_Tristen.mat";
 load(filename);
 
 %Setup
