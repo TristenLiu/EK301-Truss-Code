@@ -26,7 +26,7 @@ Sy1 = zeros(joints, 1);
 Sy2 = zeros(joints, 1);
 
 Sx = [Sx1 Sy1 Sy2]; Sy = [Sx1 Sy1 Sy2];
-Sx(1,1) = 1; Sy(1,2) = 1; Sy(8,3) = 1;
+Sx(1,1) = 1; Sy(1,2) = 1; Sy(4,3) = 1;
 
 %Defining the Load vector L
 %The first j columns represent the Horizontal Load force at the j'th pin
