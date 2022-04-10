@@ -11,9 +11,9 @@ The code works under the following assumptions:
 To test your own matrix, you can modify the code in Test_Setup.m 
 1. Change the connection (C) matrix to fit your own joints and members 
 2. Change the X and Y coordinates to the coordinates of your own joints 
-3. Modify the Sx and Sy matrices only if your reaction forces are not: 
-       - A pin at joint 1 
-       - A roller at joint 8 
+3. Modify the Sx and Sy matrices only if your reaction forces are not:  
+               - A pin at joint 1   
+               - A roller at joint 8 
 4. Change the Load vector to your own load and joint 
 5. If you change the name of the saved .mat file, change 'filename' in the TrussAnalyzer accordingly 
 6. Run the setup script, then run TrussAnalyzer.m 
